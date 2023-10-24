@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ThemeStarz">
+
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+
+    <title>Edit</title>
+
+</head>
+
+<body>
+<div class="container">
+    <h3>Thông tin cá nhân</h3>
+    <hr>
+    <form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
+        <input type="hidden" class="form-control" id="email" name="email"
+               pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+               placeholder="janedoe@gmail.com" th:value="*{email}">
+        <label for="lastName">Họ</label>
+        <input type="text" class="form-control" id="lastName"
+               name="lastName"
+               placeholder="Doe" th:value="*{lastName}" required>
+        <br>
+        <label for="firstName">Tên</label>
+        <input type="text" class="form-control" id="firstName"
+               name="firstName"
+               placeholder="Jane" th:value="*{firstName}" required>
+        <br>
+        <label for="phone">Điện thoại(10)</label>
+        <input type="text" class="form-control" id="phone" name="phone"
+               placeholder="(0)123 456 7890"
+               th:value="*{phone}" required>
+        <br>
+        <label for="gender">Giới tính</label>
+        <select class="form-control" id="gender" name="gender"
+                th:field="*{gender}">
+            <option value="Nam" th:selected="${user.gender == 'Nam'}">
+                Nam
+            </option>
+            <option value="Nữ" th:selected="${user.gender == 'Nữ'}">
+                Nữ
+            </option>
+        </select>
+        <br>
+        <label for="dob">Ngày sinh</label>
+        <input style="height: 36px" type="date" class="form-control"
+               id="dob" name="dob"
+               placeholder="Enter your age (ex: 18)" th:field="*{dob}"
+               required
+               onchange="">
+        <br>
+        <label for="new-password">New Password</label>
+        <input type="password" class="form-control" id="new-password" name="new-password">
+        <br>
+        <label for="confirm-new-password">Confirm New Password</label>
+        <input type="password" class="form-control" id="confirm-new-password" name="confirm-new-password">
+        <br>
+        <button type="submit" class="btn btn-info col-2" id="submit-button">Lưu</button>
+    </form>
+    <hr>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.getElementById("submit-button").addEventListener("click", function (event) {
+        var newPassword = document.getElementById("new-password").value;
+        var confirmNewPassword = document.getElementById("confirm-new-password").value;
+
+        if (newPassword !== confirmNewPassword) {
+            alert("Mật khẩu không trùng nhau!");
+            event.preventDefault();
+        }
+    });
+</script>
+</html>
