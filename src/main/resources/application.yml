@@ -1,10 +1,13 @@
 server:
   port: 8080
+  tomcat:
+    accesslog:
+      enabled: true
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/loginfpt?useSSL=false
-    username: postgres
-    password: Strongpass@
+    url: jdbc:postgresql://dpg-cksg7305vl2c73erbob0-a/loginfpt
+    username: loginfpt_user
+    password: Lh7BFgd0kh9vsOfjBkef40D7p5cTPhNb
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -13,6 +16,7 @@ spring:
       hibernate:
         id:
           new_generator_mappings: false
+    show-sql: true
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
