@@ -17,13 +17,7 @@ public interface UserService extends UserDetailsService {
     Optional<UserEntity> findByEmail(String email);
     UserDto findByMail(String email);
 
-    void registerUser(UserDto userDto);
-
-    UserDto findById(int id);
-
     void updateProfile(UserDto userDto);
-
-    UserEntity save(UserEntity user);
 
     int recoverPassword(String password, String email);
 }

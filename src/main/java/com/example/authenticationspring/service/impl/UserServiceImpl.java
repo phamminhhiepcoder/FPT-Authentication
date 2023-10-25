@@ -61,19 +61,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(UserDto userDto) {
-        userRepository.save(userDto);
-    }
-
-
-    @Override
-    public UserEntity save(UserEntity user) {
-        if(user.getPassword()!=null)
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
-
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserEntity> userByUsername = userRepository.findByEmail(username);
         if (!userByUsername.isPresent()) {
@@ -90,22 +77,6 @@ public class UserServiceImpl implements UserService {
         return new SecurityUser(user.getEmail(), user.getPassword(), true, true, true, true, grantedAuthorities,
                 user.getFirstName(), user.getLastName(), user.getEmail());
     }
-    @Override
-    public UserDto findById(int id) {
-        Optional<UserEntity> optionalUser = userRepository.findById(id);
-        UserEntity user = optionalUser.get();
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        if(user.getGender()) {
-            userDto.setGender("MALE");
-        }
-        else {
-            userDto.setGender("FEMALE");
-        }
-        userDto.setDob(user.getDob().toString());
-        System.out.println(userDto);
-        return userDto;
-    }
-
     @Override
     public void updateProfile(UserDto userDto) {
         UserEntity user = userRepository.findByEmail(userDto.getEmail()).get();
