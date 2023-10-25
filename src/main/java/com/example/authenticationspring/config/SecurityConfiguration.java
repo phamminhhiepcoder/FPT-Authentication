@@ -64,11 +64,11 @@ public class SecurityConfiguration {
                     .passwordParameter("password")
                     .defaultSuccessUrl("/home")
             )
-            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/home","/register","/save","re-send",
+            .authorizeHttpRequests(at ->at.antMatchers("/login/**", "/login-google", "/home","/register","/save","re-send",
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
                             "save-new-password",
                              "/assets/**").permitAll()
-                        .requestMatchers("/admin/**", "/test").hasRole("1")
+                        .antMatchers("/admin/**", "/test").hasRole("1")
                         .anyRequest().authenticated());
         return http.build();
     }

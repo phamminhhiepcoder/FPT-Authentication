@@ -5,7 +5,6 @@ import com.example.authenticationspring.config.Role;
 import com.example.authenticationspring.entity.UserEntity;
 import com.example.authenticationspring.service.EmailSenderService;
 import com.example.authenticationspring.service.UserService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;

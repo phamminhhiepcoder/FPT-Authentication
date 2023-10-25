@@ -5,17 +5,15 @@ import com.example.authenticationspring.entity.UserEntity;
 import com.example.authenticationspring.model.dto.UserDto;
 import com.example.authenticationspring.service.EmailSenderService;
 import com.example.authenticationspring.service.UserService;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
