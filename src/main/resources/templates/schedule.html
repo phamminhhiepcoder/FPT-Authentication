@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US">
+<head>
+    <title>
+        Xem lịch học theo tuần
+    </title>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    <script type="text/javascript">
+        //<![CDATA[
+        var theForm = document.forms['aspnetForm'];
+        if (!theForm) {
+            theForm = document.aspnetForm;
+        }
+
+        function __doPostBack(eventTarget, eventArgument) {
+            if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                theForm.__EVENTTARGET.value = eventTarget;
+                theForm.__EVENTARGUMENT.value = eventArgument;
+                theForm.submit();
+            }
+        }
+
+        //]]>
+    </script>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a href="../Donor.aspx">Trang chủ</a>&nbsp;|&nbsp;<b>Xem lịch học</b></span>
+    <hr/>
+    <div>
+        <h2>
+            Lịch học của sinh viên:
+            <span id="ctl00_mainContent_lblStudent" th:text="${user.firstName + ' ' + user.lastName}"></span></h2>
+        <p>
+            <b>Chú thích</b>: Các hoạt động trong bảng dưới không bao gồm hoạt động ngoại khóa,
+            ví dụ như hoạt động câu lạc bộ ...</p>
+        <table>
+            <thead>
+            <tr>
+                <th rowspan="2">
+                    Tuần
+                    <select name="ctl00$mainContent$drpSelectWeek" id="ctl00_mainContent_drpSelectWeek">
+                        <option value="1">02/01 To 08/01</option>
+                        <option value="2">09/01 To 15/01</option>
+                        <option value="3">16/01 To 22/01</option>
+                        <option value="4">23/01 To 29/01</option>
+                        <option value="5">30/01 To 05/02</option>
+                        <option value="6">06/02 To 12/02</option>
+                        <option value="7">13/02 To 19/02</option>
+                        <option value="8">20/02 To 26/02</option>
+                        <option value="9">27/02 To 05/03</option>
+                        <option value="10">06/03 To 12/03</option>
+                        <option value="11">13/03 To 19/03</option>
+                        <option value="12">20/03 To 26/03</option>
+                        <option value="13">27/03 To 02/04</option>
+                        <option value="14">03/04 To 09/04</option>
+                        <option value="15">10/04 To 16/04</option>
+                        <option value="16">17/04 To 23/04</option>
+                        <option value="17">24/04 To 30/04</option>
+                        <option value="18">01/05 To 07/05</option>
+                        <option value="19">08/05 To 14/05</option>
+                        <option value="20">15/05 To 21/05</option>
+                        <option value="21">22/05 To 28/05</option>
+                        <option value="22">29/05 To 04/06</option>
+                        <option value="23">05/06 To 11/06</option>
+                        <option value="24">12/06 To 18/06</option>
+                        <option value="25">19/06 To 25/06</option>
+                        <option value="26">26/06 To 02/07</option>
+                        <option value="27">03/07 To 09/07</option>
+                        <option value="28">10/07 To 16/07</option>
+                        <option value="29">17/07 To 23/07</option>
+                        <option value="30">24/07 To 30/07</option>
+                        <option value="31">31/07 To 06/08</option>
+                        <option value="32">07/08 To 13/08</option>
+                        <option value="33">14/08 To 20/08</option>
+                        <option value="34">21/08 To 27/08</option>
+                        <option value="35">28/08 To 03/09</option>
+                        <option value="36">04/09 To 10/09</option>
+                        <option value="37">11/09 To 17/09</option>
+                        <option value="38">18/09 To 24/09</option>
+                        <option value="39">25/09 To 01/10</option>
+                        <option value="40">02/10 To 08/10</option>
+                        <option value="41">09/10 To 15/10</option>
+                        <option value="42">16/10 To 22/10</option>
+                        <option value="43">23/10 To 29/10</option>
+                        <option value="44">30/10 To 05/11</option>
+                        <option value="45">06/11 To 12/11</option>
+                        <option value="46">13/11 To 19/11</option>
+                        <option value="47">20/11 To 26/11</option>
+                        <option value="48">27/11 To 03/12</option>
+                        <option value="49">04/12 To 10/12</option>
+                        <option value="50">11/12 To 17/12</option>
+                        <option selected="selected" value="51">18/12 To 24/12</option>
+                        <option value="52">25/12 To 31/12</option>
+                    </select>
+                </th>
+                <div id="ctl00_mainContent_divNameDay">
+                    <th align="center">Thứ 2</th>
+                    <th align="center">Thứ 3</th>
+                    <th align="center">Thứ 4</th>
+                    <th align="center">Thứ 5</th>
+                    <th align="center">Thứ 6</th>
+                    <th align="center">Thứ 7</th>
+                    <th align="center">Chủ nhật</th>
+                </div>
+            </tr>
+            <tr>
+                <div id="ctl00_mainContent_divShowDate">
+                    <th align="center">18/12</th>
+                    <th align="center">19/12</th>
+                    <th align="center">20/12</th>
+                    <th align="center">21/12</th>
+                    <th align="center">22/12</th>
+                    <th align="center">23/12</th>
+                    <th align="center">24/12</th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+            <div id="ctl00_mainContent_divContent">
+                <tr>
+                    <td>Tiết 0 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 1 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 2 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 3 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 4 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 5 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 6 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 7 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 8 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 9 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 10 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 11 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Tiết 12 (-)</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+        <p>
+            <b>Chú thích thêm</b>:</p>
+        <div id="ctl00_mainContent_divfoot">
+            <ul>
+                <li>(<font color="green">Đã điểm danh</font>): <span th:text="${user.firstName + ' ' + user.lastName}"></span> đã tham gia hoạt động này</li>
+                <li>(<font color="red">Vắng mặt</font>): <span th:text="${user.firstName + ' ' + user.lastName}"></span> đã vắng mặt buổi này</li>
+                <li>(-): chưa có dữ liệu</li>
+            </ul>
+        </div>
+        <p>
+        </p>
+    </div>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81bb4052edda5dd2","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

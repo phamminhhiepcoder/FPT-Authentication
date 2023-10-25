@@ -83,6 +83,14 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("/schedule")
+    public String getSchedulePage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "schedule";
+    }
+
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @ModelAttribute(name = "confirm-new-password")String newPass) {
         userDto.setPassword(newPass);
