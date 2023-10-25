@@ -37,16 +37,6 @@ spring:
           auth: true
           starttls:
             enable: true
-  profiles:
-    active: "@spring.profiles.active@"
-google:
-  app:
-    id: 313910921715-4on84aosmdsj5s7phd0e5l2qq9f0j222.apps.googleusercontent.com
-    secret: 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
-  redirect:
-    uri: http://localhost:8080/login-google
-  link:
-    get:
-      token: https://accounts.google.com/o/oauth2/token
-      user_info: https://www.googleapis.com/oauth2/v1/userinfo?access_token=
+
+
 
