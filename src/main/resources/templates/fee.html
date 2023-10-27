@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en-US">
+<head><title>
+    FPT University Academic Portal
+</title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form name="aspnetForm" method="post" action="#" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+    <div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value/>
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value/>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="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"/>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        var theForm = document.forms['aspnetForm'];
+        if (!theForm) {
+            theForm = document.aspnetForm;
+        }
+
+        function __doPostBack(eventTarget, eventArgument) {
+            if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                theForm.__EVENTTARGET.value = eventTarget;
+                theForm.__EVENTARGUMENT.value = eventArgument;
+                theForm.submit();
+            }
+        }
+
+        //]]>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        function WebForm_OnSubmit() {
+            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+            return true;
+        }
+
+        //]]>
+    </script>
+    <div>
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F0DC6585"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="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"/>
+    </div>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a href="#">Trang chủ</a>&nbsp;|&nbsp;<b>Tiền nộp</b></span>
+    <hr/>
+    <div>
+        <h2><span id="ctl00_mainContent_lblTitle">Báo cáo tình trạng nộp tiền của sinh viên</span></h2>
+        <p class="filter">Từ:
+            <select name="ctl00$mainContent$ucStartDate$ddlDays" id="ctl00_mainContent_ucStartDate_ddlDays">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option selected="selected" value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>&nbsp;/&nbsp;
+            <select name="ctl00$mainContent$ucStartDate$ddlMonths" id="ctl00_mainContent_ucStartDate_ddlMonths">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option selected="selected" value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>&nbsp;/&nbsp;
+            <select name="ctl00$mainContent$ucStartDate$ddlYears" id="ctl00_mainContent_ucStartDate_ddlYears">
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option selected="selected" value="2023">2023</option>
+            </select>&nbsp;
+            <span id="ctl00_mainContent_ucStartDate_CustomValidator1"
+                  style="color:Red;display:none;">Date is not valid</span>&nbsp;Đến&nbsp;
+            <select name="ctl00$mainContent$ucEndDate$ddlDays" id="ctl00_mainContent_ucEndDate_ddlDays">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option selected="selected" value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>&nbsp;/&nbsp;
+            <select name="ctl00$mainContent$ucEndDate$ddlMonths" id="ctl00_mainContent_ucEndDate_ddlMonths">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option selected="selected" value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>&nbsp;/&nbsp;
+            <select name="ctl00$mainContent$ucEndDate$ddlYears" id="ctl00_mainContent_ucEndDate_ddlYears">
+                <option value="2022">2022</option>
+                <option selected="selected" value="2023">2023</option>
+            </select>&nbsp;
+            <span id="ctl00_mainContent_ucEndDate_CustomValidator1"
+                  style="color:Red;display:none;">Date is not valid</span><br/>
+        </p>
+        <table>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="ctl00$mainContent$btView" value="Xem"
+                           onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$mainContent$btView&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))"
+                           id="ctl00_mainContent_btView" style="width:50px;"/>&nbsp;
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div>
+        </div>
+        <br/>
+        <b>Số tiền hiện tại trên hệ thống: <span id="ctl00_mainContent_lblTitleAccount">0</span> VNĐ</b>
+        <input type="hidden" name="ctl00$mainContent$hfError" id="ctl00_mainContent_hfError"/>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        var Page_Validators = new Array(document.getElementById("ctl00_mainContent_ucStartDate_CustomValidator1"), document.getElementById("ctl00_mainContent_ucEndDate_CustomValidator1"));
+        //]]>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        var ctl00_mainContent_ucStartDate_CustomValidator1 = document.all ? document.all["ctl00_mainContent_ucStartDate_CustomValidator1"] : document.getElementById("ctl00_mainContent_ucStartDate_CustomValidator1");
+        ctl00_mainContent_ucStartDate_CustomValidator1.errormessage = "Date is not valid";
+        ctl00_mainContent_ucStartDate_CustomValidator1.display = "Dynamic";
+        ctl00_mainContent_ucStartDate_CustomValidator1.evaluationfunction = "CustomValidatorEvaluateIsValid";
+        var ctl00_mainContent_ucEndDate_CustomValidator1 = document.all ? document.all["ctl00_mainContent_ucEndDate_CustomValidator1"] : document.getElementById("ctl00_mainContent_ucEndDate_CustomValidator1");
+        ctl00_mainContent_ucEndDate_CustomValidator1.errormessage = "Date is not valid";
+        ctl00_mainContent_ucEndDate_CustomValidator1.display = "Dynamic";
+        ctl00_mainContent_ucEndDate_CustomValidator1.evaluationfunction = "CustomValidatorEvaluateIsValid";
+        //]]>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+
+        var Page_ValidationActive = false;
+        if (typeof (ValidatorOnLoad) == "function") {
+            ValidatorOnLoad();
+        }
+
+        function ValidatorOnSubmit() {
+            if (Page_ValidationActive) {
+                return ValidatorCommonOnSubmit();
+            } else {
+                return true;
+            }
+        }
+
+        //]]>
+    </script>
+</form>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81cb71e45dc50433","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+</body>
+</html>

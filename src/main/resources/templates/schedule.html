@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <html lang="en-US">
 <head>
     <title>
         Xem lịch học theo tuần
     </title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
     <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
@@ -20,6 +21,7 @@
             color: blue;
         }
     </style>
+</head>
 <body>
 <div class="logo">
 </div>
@@ -52,7 +54,7 @@
         <a href="?view=user">
             <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
     </div>
-    <span id="ctl00_lblNavigation"><a href="../Donor.aspx">Trang chủ</a>&nbsp;|&nbsp;<b>Xem lịch học</b></span>
+    <span id="ctl00_lblNavigation"><a href="#">Trang chủ</a>&nbsp;|&nbsp;<b>Xem lịch học</b></span>
     <hr/>
     <div>
         <h2>

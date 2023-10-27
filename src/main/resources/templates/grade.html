@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en-US">
+<head><title>
+    FPT University Academic Portal
+</title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form name="aspnetForm" method="post" action="./StudentGrade_Donor.aspx" id="aspnetForm">
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="/wEPDwUKMTY4NzA4NDQ4MA9kFgJmDw8WBB4PX19BbnRpWHNyZlRva2VuBSAxOWE4YTQ4NTMzMjc0MTcwOGIzZDc1ZTQxNGE3N2U5Mh4SX19BbnRpWHNyZlVzZXJOYW1lZWQWAgIDD2QWBgIBD2QWAgIBDw8WAh4EVGV4dAUOVGFuTlZIRTE4NzIxNitkZAIDDw8WAh8CBVE8YSBocmVmPScuLi9Eb25vci5hc3B4Jz5UcmFuZyBjaOG7pzwvYT4mbmJzcDt8Jm5ic3A7PGI+WGVtIMSRaeG7g20gc2luaCB2acOqbjwvYj5kZAIFD2QWBgIBDw8WAh8CBRlOZ8O0IFbEg24gVMOibiAoSEUxODcyMTYpZGQCAw8WAh4JaW5uZXJodG1sBZkCPHRhYmxlPjx0cj48dGQ+PGEgaHJlZj0iP3JvbGxOdW1iZXI9SEUxODcyMTYmdGVybT1GYWxsMjAyMiI+RmFsbDIwMjI8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP3JvbGxOdW1iZXI9SEUxODcyMTYmdGVybT1TcHJpbmcyMDIzIj5TcHJpbmcyMDIzPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9yb2xsTnVtYmVyPUhFMTg3MjE2JnRlcm09U3VtbWVyMjAyMyI+U3VtbWVyMjAyMzwvYT48L3RkPjwvdHI+PHRyPjx0ZD48Yj5GYWxsMjAyMzwvYj48L3RkPjwvdHI+PC90YWJsZT5kAgUPFgIfAwWfATx0YWJsZT48dHI+PHRkPjxhIGhyZWY9Ij9yb2xsTnVtYmVyPUhFMTg3MjE2JnRlcm09RmFsbDIwMjMmY291cnNlPTcwMDEyIj5UcmFuc2l0aW9uIChUUlM2MDEpPC9hPiAoVFJTNjAxLjQyLlAxLCBC4bqvdCDEkeG6p3UgdOG7qyAwNS8wOS8yMDIzKTwvdGQ+PC90cj48L3RhYmxlPmRkM5HnS8cv6z4QWd5y5EQ8w69WKhuNRrBXSnPhtXDhlnQ="/>
+    </div>
+    <div>
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="D266FAA3"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEdAAJOuxP5kkzxN7xhFp/kJCNcomzTv/TXUtMjh3GYOmC7nzU3qJyiuamf179kzRnLOxJxHZ5v5/Chtlb6D58487OP"/>
+    </div>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a href="#">Trang chủ</a>&nbsp;|&nbsp;<b>Xem điểm sinh viên</b></span>
+    <hr/>
+    <div>
+        <h2>Điểm tổng kết cho sinh viên: <span id="ctl00_mainContent_lblRollNumber" th:text="${user.firstName + ' ' + user.lastName}"></span></h2>
+        <table>
+            <tr>
+                <td valign="top"><h3>Lựa chọn chương trình đào tạo, kỳ học, môn học ...</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Kỳ học</th>
+                            <th>Môn học</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divTerm">
+                                    <table>
+                                        <tr>
+                                            <td><a href="?rollNumber=HE187216&term=Fall2022">Fall2022</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?rollNumber=HE187216&term=Spring2023">Spring2023</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?rollNumber=HE187216&term=Summer2023">Summer2023</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Fall2023</b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divCourse">
+                                    <table>
+                                        <tr>
+                                            <td><a href="?rollNumber=HE187216&term=Fall2023&course=70012">Transition
+                                                (TRS601)</a> (TRS601.42.P1, Bắt đầu từ 05/09/2023)
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td valign="top">
+                    <div id="ctl00_mainContent_divGrade"></div>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="ctl00$mainContent$hdError" id="ctl00_mainContent_hdError"/>
+    </div>
+</form>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81cb6f39f9db0433","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+</body>
+</html>

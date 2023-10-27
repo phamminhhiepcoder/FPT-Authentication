@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en-US">
+<head><title>
+    Điểm danh sinh viên
+</title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="/wEPDwUKLTkxMTk2NDc1NQ9kFgJmDw8WBB4PX19BbnRpWHNyZlRva2VuBSAxOWE4YTQ4NTMzMjc0MTcwOGIzZDc1ZTQxNGE3N2U5Mh4SX19BbnRpWHNyZlVzZXJOYW1lZWQWAgIDD2QWBgIBD2QWAgIBDw8WAh4EVGV4dAUOVGFuTlZIRTE4NzIxNitkZAIDDw8WAh8CBVY8YSBocmVmPScuLi9Eb25vci5hc3B4Jz5UcmFuZyBjaOG7pzwvYT4mbmJzcDt8Jm5ic3A7PGI+WGVtIHRow7RuZyB0aW4gxJFp4buDbSBkYW5oPC9iPmRkAgUPZBYIAgEPDxYCHwIFHk5nw7QgVsSDbiBUw6JuICh0YW5udmhlMTg3MjE2KWRkAgUPFgIeCWlubmVyaHRtbAX8Cjx0YWJsZT48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTE4Ij5TdW1tZXIyMDE3PC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTE5Ij5GYWxsMjAxNzwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0yMCI+U3ByaW5nMjAxODwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0yMSI+U3VtbWVyMjAxODwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0yMiI+RmFsbDIwMTg8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MjMiPlNwcmluZzIwMTk8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MjQiPlN1bW1lcjIwMTk8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MjUiPkZhbGwyMDE5PC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTI2Ij5TcHJpbmcyMDIwPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTI3Ij5TdW1tZXIyMDIwPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTI4Ij5GYWxsMjAyMDwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0yOSI+U3ByaW5nMjAyMTwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0zMCI+U3VtbWVyMjAyMTwvYT48L3RkPjwvdHI+PHRyPjx0ZD48YSBocmVmPSI/aWQ9SEUxODcyMTYmY2FtcHVzPTMmdGVybT0zMSI+RmFsbDIwMjE8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MzIiPlNwcmluZzIwMjI8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MzMiPlN1bW1lcjIwMjI8L2E+PC90ZD48L3RyPjx0cj48dGQ+PGEgaHJlZj0iP2lkPUhFMTg3MjE2JmNhbXB1cz0zJnRlcm09MzciPkZhbGwyMDIyPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTM4Ij5TcHJpbmcyMDIzPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxhIGhyZWY9Ij9pZD1IRTE4NzIxNiZjYW1wdXM9MyZ0ZXJtPTM5Ij5TdW1tZXIyMDIzPC9hPjwvdGQ+PC90cj48dHI+PHRkPjxiPkZhbGwyMDIzPC9iPjwvdGQ+PC90cj48L3RhYmxlPmQCBw8WAh8DBWU8dGFibGU+PHRyPjx0ZD48Yj5UcmFuc2l0aW9uKFRSUzYwMSkoVFJTNjAxLjQyLlAxLGLhuq90IMSR4bqndSB04burIDA1LzA5LzIwMjMpPC9iPjwvdGQ+PC90cj48L3RhYmxlPmQCCQ8WAh8DBZxYIDx0ZCB2YWxpZ249J3RvcCc+PGgzPi4uLiBL4bq/dCBxdeG6ozxiciAvPjxiciAvPjwvaDM+PHRhYmxlPjx0cj48dGhlYWQ+IDx0aD5TVFQ8L3RoPjx0aD5OZ8OgeTwvdGg+PHRoPlNsb3Q8L3RoPjx0aD5HaeG6o25nIHZpw6puPC90aD48dGg+TcO0IHThuqM8L3RoPjx0aD5UcuG6oW5nIHRow6FpPC90aD48dGg+R2hpIGNow7ogY+G7p2EgZ2nhuqNuZyB2acOqbjwvdGg+PC90cj48L3RoZWFkPjx0Ym9keT48dHI+PHRkPjE8L3RkPjx0ZD5UaMawzIEgQmEsIDA1LzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MjwvdGQ+PHRkPlRoxrDMgSBCYSwgMDUvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4zPC90ZD48dGQ+VGjGsMyBIFTGsCwgMDYvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjQ8L3RkPjx0ZD5UaMawzIEgVMawLCAwNi8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NTwvdGQ+PHRkPlRoxrDMgSBOxINtLCAwNy8wOS8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPXJlZD5W4bqvbmcgbeG6t3Q8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjwvdGQ+PHRkPlRoxrDMgSBOxINtLCAwNy8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPXJlZD5W4bqvbmcgbeG6t3Q8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NzwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMDgvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjg8L3RkPjx0ZD5UaMawzIEgU2HMgXUsIDA4LzA5LzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD45PC90ZD48dGQ+VGjGsMyBIEhhaSwgMTEvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjEwPC90ZD48dGQ+VGjGsMyBIEhhaSwgMTEvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjExPC90ZD48dGQ+VGjGsMyBIEJhLCAxMi8wOS8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjEyPC90ZD48dGQ+VGjGsMyBIEJhLCAxMi8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjEzPC90ZD48dGQ+VGjGsMyBIFTGsCwgMTMvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjE0PC90ZD48dGQ+VGjGsMyBIFTGsCwgMTMvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjE1PC90ZD48dGQ+VGjGsMyBIE7Eg20sIDE0LzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MTY8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMTQvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4xNzwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMTUvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjE4PC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAxNS8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MTk8L3RkPjx0ZD5UaMawzIEgQmHMiXksIDE2LzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1yZWQ+VuG6r25nIG3hurd0PC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjIwPC90ZD48dGQ+VGjGsMyBIEJhzIl5LCAxNi8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9cmVkPlbhuq9uZyBt4bq3dDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yMTwvdGQ+PHRkPlRoxrDMgSBIYWksIDE4LzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yMjwvdGQ+PHRkPlRoxrDMgSBIYWksIDE4LzA5LzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yMzwvdGQ+PHRkPlRoxrDMgSBCYSwgMTkvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yNDwvdGQ+PHRkPlRoxrDMgSBCYSwgMTkvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yNTwvdGQ+PHRkPlRoxrDMgSBUxrAsIDIwLzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1yZWQ+VuG6r25nIG3hurd0PC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjI2PC90ZD48dGQ+VGjGsMyBIFTGsCwgMjAvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPXJlZD5W4bqvbmcgbeG6t3Q8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+Mjc8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMjEvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4yODwvdGQ+PHRkPlRoxrDMgSBOxINtLCAyMS8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjI5PC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAyMi8wOS8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPm5hbXZoMzY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4zMDwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMjIvMDkvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5uYW12aDM2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzE8L3RkPjx0ZD5UaMawzIEgSGFpLCAyNS8wOS8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzI8L3RkPjx0ZD5UaMawzIEgSGFpLCAyNS8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzM8L3RkPjx0ZD5UaMawzIEgQmEsIDI2LzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzQ8L3RkPjx0ZD5UaMawzIEgQmEsIDI2LzA5LzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzU8L3RkPjx0ZD5UaMawzIEgVMawLCAyNy8wOS8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+MzY8L3RkPjx0ZD5UaMawzIEgVMawLCAyNy8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+Mzc8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMjgvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1yZWQ+VuG6r25nIG3hurd0PC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjM4PC90ZD48dGQ+VGjGsMyBIE7Eg20sIDI4LzA5LzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9cmVkPlbhuq9uZyBt4bq3dDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD4zOTwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMjkvMDkvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjQwPC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAyOS8wOS8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDE8L3RkPjx0ZD5UaMawzIEgQmHMiXksIDMwLzA5LzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TGFuTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDI8L3RkPjx0ZD5UaMawzIEgQmHMiXksIDMwLzA5LzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+TGFuTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDM8L3RkPjx0ZD5UaMawzIEgSGFpLCAwMi8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDQ8L3RkPjx0ZD5UaMawzIEgSGFpLCAwMi8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDU8L3RkPjx0ZD5UaMawzIEgVMawLCAwNC8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDY8L3RkPjx0ZD5UaMawzIEgVMawLCAwNC8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NDc8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMDUvMTAvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD40ODwvdGQ+PHRkPlRoxrDMgSBOxINtLCAwNS8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjQ5PC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAwNi8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NTA8L3RkPjx0ZD5UaMawzIEgU2HMgXUsIDA2LzEwLzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+THlQSDY8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD41MTwvdGQ+PHRkPlRoxrDMgSBIYWksIDA5LzEwLzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+VGhhb1BONTwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPXJlZD5W4bqvbmcgbeG6t3Q8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NTI8L3RkPjx0ZD5UaMawzIEgSGFpLCAwOS8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPlRoYW9QTjU8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1yZWQ+VuG6r25nIG3hurd0PC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjUzPC90ZD48dGQ+VGjGsMyBIEJhLCAxMC8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjU0PC90ZD48dGQ+VGjGsMyBIEJhLCAxMC8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPk5nYU5UVDwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjU1PC90ZD48dGQ+VGjGsMyBIFTGsCwgMTEvMTAvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjU2PC90ZD48dGQ+VGjGsMyBIFTGsCwgMTEvMTAvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjU3PC90ZD48dGQ+VGjGsMyBIE7Eg20sIDEyLzEwLzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NTg8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMTIvMTAvMjAyMzwvdGQ+PHRkPjM8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1ncmVlbj7EkMOjIMSRaeG7g20gZGFuaDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD41OTwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMTMvMTAvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjYwPC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAxMy8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjE8L3RkPjx0ZD5UaMawzIEgSGFpLCAxNi8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjI8L3RkPjx0ZD5UaMawzIEgSGFpLCAxNi8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjM8L3RkPjx0ZD5UaMawzIEgQmEsIDE3LzEwLzIwMjM8L3RkPjx0ZD4yPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjQ8L3RkPjx0ZD5UaMawzIEgQmEsIDE3LzEwLzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjU8L3RkPjx0ZD5UaMawzIEgVMawLCAxOC8xMC8yMDIzPC90ZD48dGQ+MjwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+NjY8L3RkPjx0ZD5UaMawzIEgVMawLCAxOC8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjx0cj48dGQ+Njc8L3RkPjx0ZD5UaMawzIEgTsSDbSwgMTkvMTAvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5OZ2FOVFQ8L3RkPjx0ZD5UUlM2MDEuNDIuUDE8L3RkPjx0ZD48Zm9udCBjb2xvcj1yZWQ+VuG6r25nIG3hurd0PC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjY4PC90ZD48dGQ+VGjGsMyBIE7Eg20sIDE5LzEwLzIwMjM8L3RkPjx0ZD4zPC90ZD48dGQ+TmdhTlRUPC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9cmVkPlbhuq9uZyBt4bq3dDwvZm9udD48L3RkPjx0ZD48L3RkPjwvdHI+PHRyPjx0ZD42OTwvdGQ+PHRkPlRoxrDMgSBTYcyBdSwgMjAvMTAvMjAyMzwvdGQ+PHRkPjI8L3RkPjx0ZD5MeVBINjwvdGQ+PHRkPlRSUzYwMS40Mi5QMTwvdGQ+PHRkPjxmb250IGNvbG9yPWdyZWVuPsSQw6MgxJFp4buDbSBkYW5oPC9mb250PjwvdGQ+PHRkPjwvdGQ+PC90cj48dHI+PHRkPjcwPC90ZD48dGQ+VGjGsMyBIFNhzIF1LCAyMC8xMC8yMDIzPC90ZD48dGQ+MzwvdGQ+PHRkPkx5UEg2PC90ZD48dGQ+VFJTNjAxLjQyLlAxPC90ZD48dGQ+PGZvbnQgY29sb3I9Z3JlZW4+xJDDoyDEkWnhu4NtIGRhbmg8L2ZvbnQ+PC90ZD48dGQ+PC90ZD48L3RyPjwvdGJvZHk+PHRmb290Pjx0cj48dGQgY29sc3Bhbj0nNyc+PGI+VuG6r25nIG3hurd0PC9iPjogVuG6r25nIG3hurd0IDE3JSAgKDEyIGJ14buVaSB24bqvbmcgdHLDqm4gdOG7lW5nIGPhu5luZyA3MCBideG7lWkgaOG7jWMgKS48L3RkPjwvdHI+PC90Zm9vdD4gPC90YWJsZT48L3RkZGSYvy88rWCQstsss52JQUsHVVR+OKqUrM3FWlYz796JtA=="/>
+    </div>
+    <div>
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="D66F6F1B"/>
+    </div>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a
+            href="#">Trang chủ</a>&nbsp;|&nbsp;<b>Xem thông tin điểm danh</b></span>
+    <hr/>
+    <div>
+        <h2>
+            Tổng kết điểm danh cho sinh viên:
+            <span id="ctl00_mainContent_lblStudent" th:text="${user.firstName + ' ' + user.lastName}"></span></h2>
+        <font style="font-weight: bold">
+        </font>
+        <table>
+            <tbody>
+            <tr>
+                <td valign="top">
+                    <h3>
+                        Lựa Kỳ học, môn học ...</h3>
+                    <table summary="Select a course">
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                Học kỳ
+                            </th>
+                            <th scope="col">
+                                Môn học
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divTerm">
+                                    <table>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=18">Summer2017</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=19">Fall2017</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=20">Spring2018</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=21">Summer2018</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=22">Fall2018</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=23">Spring2019</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=24">Summer2019</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=25">Fall2019</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=26">Spring2020</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=27">Summer2020</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=28">Fall2020</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=29">Spring2021</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=30">Summer2021</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=31">Fall2021</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=32">Spring2022</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=33">Summer2022</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=37">Fall2022</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=38">Spring2023</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="?id=HE187216&campus=3&term=39">Summer2023</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Fall2023</b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divCourse">
+                                    <table>
+                                        <tr>
+                                            <td><b>Transition(TRS601)(TRS601.42.P1,bắt đầu từ 05/09/2023)</b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tbody>
+                    </table>
+                </td>
+                <div id="ctl00_mainContent_divDetail">
+                    <td valign="top"><h3>... Kết quả<br/><br/></h3>
+                        <table>
+                            <tr>
+                                <thead>
+                                <th>STT</th>
+                                <th>Ngày</th>
+                                <th>Slot</th>
+                                <th>Giảng viên</th>
+                                <th>Mô tả</th>
+                                <th>Trạng thái</th>
+                                <th>Ghi chú của giảng viên</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Thứ Ba, 05/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Thứ Ba, 05/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Thứ Tư, 06/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Thứ Tư, 06/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Thứ Năm, 07/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Thứ Năm, 07/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Thứ Sáu, 08/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Thứ Sáu, 08/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Thứ Hai, 11/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Thứ Hai, 11/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Thứ Ba, 12/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Thứ Ba, 12/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Thứ Tư, 13/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>Thứ Tư, 13/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>Thứ Năm, 14/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>Thứ Năm, 14/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>Thứ Sáu, 15/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>Thứ Sáu, 15/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Thứ Bảy, 16/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td>Thứ Bảy, 16/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>21</td>
+                                <td>Thứ Hai, 18/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>22</td>
+                                <td>Thứ Hai, 18/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Thứ Ba, 19/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Thứ Ba, 19/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>Thứ Tư, 20/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>26</td>
+                                <td>Thứ Tư, 20/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>27</td>
+                                <td>Thứ Năm, 21/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>28</td>
+                                <td>Thứ Năm, 21/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>29</td>
+                                <td>Thứ Sáu, 22/09/2023</td>
+                                <td>2</td>
+                                <td>namvh36</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>30</td>
+                                <td>Thứ Sáu, 22/09/2023</td>
+                                <td>3</td>
+                                <td>namvh36</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>31</td>
+                                <td>Thứ Hai, 25/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>32</td>
+                                <td>Thứ Hai, 25/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>33</td>
+                                <td>Thứ Ba, 26/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>34</td>
+                                <td>Thứ Ba, 26/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>35</td>
+                                <td>Thứ Tư, 27/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>36</td>
+                                <td>Thứ Tư, 27/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>37</td>
+                                <td>Thứ Năm, 28/09/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>38</td>
+                                <td>Thứ Năm, 28/09/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>39</td>
+                                <td>Thứ Sáu, 29/09/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>40</td>
+                                <td>Thứ Sáu, 29/09/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>41</td>
+                                <td>Thứ Bảy, 30/09/2023</td>
+                                <td>2</td>
+                                <td>LanNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>42</td>
+                                <td>Thứ Bảy, 30/09/2023</td>
+                                <td>3</td>
+                                <td>LanNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>43</td>
+                                <td>Thứ Hai, 02/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>44</td>
+                                <td>Thứ Hai, 02/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>45</td>
+                                <td>Thứ Tư, 04/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>46</td>
+                                <td>Thứ Tư, 04/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>47</td>
+                                <td>Thứ Năm, 05/10/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>48</td>
+                                <td>Thứ Năm, 05/10/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>49</td>
+                                <td>Thứ Sáu, 06/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>50</td>
+                                <td>Thứ Sáu, 06/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>51</td>
+                                <td>Thứ Hai, 09/10/2023</td>
+                                <td>2</td>
+                                <td>ThaoPN5</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>52</td>
+                                <td>Thứ Hai, 09/10/2023</td>
+                                <td>3</td>
+                                <td>ThaoPN5</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>53</td>
+                                <td>Thứ Ba, 10/10/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>54</td>
+                                <td>Thứ Ba, 10/10/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Thứ Tư, 11/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>56</td>
+                                <td>Thứ Tư, 11/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>57</td>
+                                <td>Thứ Năm, 12/10/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>58</td>
+                                <td>Thứ Năm, 12/10/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>59</td>
+                                <td>Thứ Sáu, 13/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>60</td>
+                                <td>Thứ Sáu, 13/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>61</td>
+                                <td>Thứ Hai, 16/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>62</td>
+                                <td>Thứ Hai, 16/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>63</td>
+                                <td>Thứ Ba, 17/10/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>64</td>
+                                <td>Thứ Ba, 17/10/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>65</td>
+                                <td>Thứ Tư, 18/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>66</td>
+                                <td>Thứ Tư, 18/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>67</td>
+                                <td>Thứ Năm, 19/10/2023</td>
+                                <td>2</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>68</td>
+                                <td>Thứ Năm, 19/10/2023</td>
+                                <td>3</td>
+                                <td>NgaNTT</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="red">Vắng mặt</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>69</td>
+                                <td>Thứ Sáu, 20/10/2023</td>
+                                <td>2</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>70</td>
+                                <td>Thứ Sáu, 20/10/2023</td>
+                                <td>3</td>
+                                <td>LyPH6</td>
+                                <td>TRS601.42.P1</td>
+                                <td><font color="green">Đã điểm danh</font></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="7"><b>Vắng mặt</b>: Vắng mặt 17% (12 buổi vắng trên tổng cộng 70 buổi học
+                                    ).
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81cb658c982f0433","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+</body>
+</html>

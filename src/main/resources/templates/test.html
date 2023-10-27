@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+    FPT University Academic Portal
+</title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form name="aspnetForm" method="post" action="#" id="aspnetForm">
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="/wEPDwUKMTY5MTEzNzE4MA9kFgJmDw8WBB4PX19BbnRpWHNyZlRva2VuBSAxOWE4YTQ4NTMzMjc0MTcwOGIzZDc1ZTQxNGE3N2U5Mh4SX19BbnRpWHNyZlVzZXJOYW1lZWQWAgIDD2QWBgIBD2QWAgIBDw8WAh4EVGV4dAUOVGFuTlZIRTE4NzIxNitkZAIDDw8WAh8CBUM8YSBocmVmPScuLi9TdHVkZW50LmFzcHgnPkhvbWU8L2E+Jm5ic3A7fCZuYnNwOzxiPlNjaGVkdWxlIEV4YW08L2I+ZGQCBQ9kFgICAQ8WAh4JaW5uZXJodG1sBb0HPHRhYmxlPjx0aGVhZD48dHI+IDx0aCB3aWR0aD0nMTBweCc+Tm88L3RoPiA8dGggd2lkdGg9JzcwcHgnPk1hzIMgbcO0bjwvdGg+IDx0aCB3aWR0aD0nMjUwcHgnPlTDqm4gbcO0biB0aGk8L3RoPiA8dGggIHdpZHRoPScxMDBweCc+TmdhzIB5IHRoaTwvdGg+IDx0aCB3aWR0aD0nNTBweCc+UGhvzIBuZyB0aGk8L3RoPiA8dGggd2lkdGg9JzEwMHB4Jz5UaMahzIBpIGdpYW4gdGhpPC90aD4gPHRoIHdpZHRoPScyMDBweCc+RXhhbSBGb3JtPC90aD4gPHRoIHdpZHRoPScxMDBweCc+RXhhbTwvdGg+IDx0aCB3aWR0aD0nMTAwcHgnPk5nYcyAeSBjw7RuZyBiw7TMgSDEkWnDqsyJbTwvdGg+ICA8L3RyPjwvdGhlYWQ+PHRyPjx0ZCB3aWR0aD0nMTBweCc+MTwvdGQ+PHRkIHdpZHRoPSc3MHB4Jz5UUlM2MDE8L3RkPjx0ZCB3aWR0aD0nMjUwcHgnPlRyYW5zaXRpb248L3RkPjx0ZCB3aWR0aD0nMTAwcHgnPjIxLzEwLzIwMjM8L3RkPjx0ZCB3aWR0aD0nNTBweCc+QkUtMjEyPC90ZD48dGQgd2lkdGg9JzEwMHB4Jz4xM2gwMC0xNWgzMDwvdGQ+PHRkIHdpZHRoPScyMHB4Jz5SZWFkaW5nLCBWb2NhYnVsYXJ5LCBXcml0aW5nIG9uIEVPUzwvdGQ+PHRkIHdpZHRoPScyMHB4Jz5GRTwvdGQ+PHRkIHdpZHRoPScxMDBweCc+MjUvMTAvMjAyMzwvdGQ+PC90cj48dHI+PHRkIHdpZHRoPScxMHB4Jz4yPC90ZD48dGQgd2lkdGg9JzcwcHgnPlRSUzYwMTwvdGQ+PHRkIHdpZHRoPScyNTBweCc+VHJhbnNpdGlvbjwvdGQ+PHRkIHdpZHRoPScxMDBweCc+MjYvMTAvMjAyMzwvdGQ+PHRkIHdpZHRoPSc1MHB4Jz48L3RkPjx0ZCB3aWR0aD0nMTAwcHgnPjEzaDAwLTE1aDMwPC90ZD48dGQgd2lkdGg9JzIwcHgnPlJlYWRpbmcsIFZvY2FidWxhcnksIFdyaXRpbmcgb24gRU9TPC90ZD48dGQgd2lkdGg9JzIwcHgnPjJOREZFPC90ZD48dGQgd2lkdGg9JzEwMHB4Jz4wMS8xMS8yMDIzPC90ZD48L3RyPjwvdGFibGU+ZGRT0rOsPlz0BAuQPzUbRE721KKoRNfB1D0AttX29RZbBA=="/>
+    </div>
+    <div>
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="65472961"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEdAAK2SurPGp1g+PimqIDjRztvkGLvMv7Nr0WhoGyhp3lpMOvVJlvfGnUFb9yLYaLCP975TNlAAsPeCtq3okXrDEOH"/>
+    </div>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a href="#">Home</a>&nbsp;|&nbsp;<b>Schedule Exam</b></span>
+    <hr/>
+    <div>
+        <h3>Exam Schedules </h3><br/>
+        <div id="ctl00_mainContent_divContent">
+            <table>
+                <thead>
+                <tr>
+                    <th width="10px">No</th>
+                    <th width="70px">Mã môn</th>
+                    <th width="250px">Tên môn thi</th>
+                    <th width="100px">Ngày thi</th>
+                    <th width="50px">Phòng thi</th>
+                    <th width="100px">Thời gian thi</th>
+                    <th width="200px">Exam Form</th>
+                    <th width="100px">Exam</th>
+                    <th width="100px">Ngày công bố điểm</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td width="10px">1</td>
+                    <td width="70px">TRS601</td>
+                    <td width="250px">Transition</td>
+                    <td width="100px">21/10/2023</td>
+                    <td width="50px">BE-212</td>
+                    <td width="100px">13h00-15h30</td>
+                    <td width="20px">Reading, Vocabulary, Writing on EOS</td>
+                    <td width="20px">FE</td>
+                    <td width="100px">25/10/2023</td>
+                </tr>
+                <tr>
+                    <td width="10px">2</td>
+                    <td width="70px">TRS601</td>
+                    <td width="250px">Transition</td>
+                    <td width="100px">26/10/2023</td>
+                    <td width="50px"></td>
+                    <td width="100px">13h00-15h30</td>
+                    <td width="20px">Reading, Vocabulary, Writing on EOS</td>
+                    <td width="20px">2NDFE</td>
+                    <td width="100px">01/11/2023</td>
+                </tr>
+            </table>
+        </div>
+        <input type="hidden" name="ctl00$mainContent$hdException" id="ctl00_mainContent_hdException"/>
+    </div>
+</form>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81cb75b2ce0d0433","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+    FPT University Academic Portal
+</title>
+    <link rel="Stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style type="text/css">
+        .style1 {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+</div>
+<div style="position: absolute; top: 8px; left: 256px; width: 824px;">
+    <h1 style="text-align: center">Academic Portal</h1>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form name="aspnetForm" method="post" action="#" id="aspnetForm">
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="/wEPDwULLTE1OTAxNzkxODkPZBYCZg8PFgQeD19fQW50aVhzcmZUb2tlbgUgMTlhOGE0ODUzMzI3NDE3MDhiM2Q3NWU0MTRhNzdlOTIeEl9fQW50aVhzcmZVc2VyTmFtZWVkFgICAw9kFgQCAQ9kFgICAQ8PFgIeBFRleHQFDlRhbk5WSEUxODcyMTYrZGQCAw8PFgIfAgVIPGEgaHJlZj0nRGVmYXVsdC5hc3B4Jz5Ib21lPC9hPiZuYnNwO3wmbmJzcDs8Yj5I4buNYyBwaMOtIHNpbmggdmnDqm48L2I+ZGRkLfxVnxcclIa6LelXe1HNGgy9CcDv/dOArLDSTKZT/Bo="/>
+    </div>
+    <div>
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A7A60944"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEdAAJgAm6vA0MF0g6mMJPjsduhunEHGmAuBZotBhbMHEPUxc0ALtQ2DSAyH8+t2/J1ePHgbAUhHUMbc6GNpN4O+6nx"/>
+    </div>
+    <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+        <a href="?view=user">
+            <span id="ctl00_lblLogIn" th:text="${user.email}"></span></a> | <a href="?logout=true">logout</a>
+    </div>
+    <span id="ctl00_lblNavigation"><a href="#">Home</a>&nbsp;|&nbsp;<b>Học phí sinh viên</b></span>
+    <hr/>
+    <div>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+        <script src="   https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <h2>Tra cứu học phí đã nộp</h2>
+        <table id="example" style="width: 100%">
+            <thead>
+            <tr>
+                <th>Invoice No</th>
+                <th>RollNumber</th>
+                <th>SemesterName</th>
+                <th>Invoice Date</th>
+                <th>Amount</th>
+                <th>Note</th>
+            </tr>
+            </thead>
+            </tbody>
+        </table>
+        <input type="hidden" name="ctl00$mainContent$hfError" id="ctl00_mainContent_hfError"/>
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable(
+                    {
+                        "pageLength": 100
+                    });
+            })
+        </script>
+    </div>
+</form>
+<hr/>
+<p style="text-align: center">
+    © 2012 Powered by <a href="http://fpt.edu.vn" target="_blank">FPT University</a>&nbsp;|&nbsp;
+    <a href="http://cms.fpt.edu.vn/" target="_blank">News</a>&nbsp;|&nbsp; <a href>Comments</a>
+</p>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"81cb77e2bb5f0433","version":"2023.10.0","token":"56c6dd7e4ecf4947aa540f48289e45af"}'
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -66,12 +66,12 @@
                     <span id="ctl00_mainContent_lblRollNumber" style="color:Red;" th:text="${userId}"></span>
                     <ul>
                         <li><a th:href="@{/schedule}">Lịch học từng tuần</a></li>
-                        <li><a href="#">Số liệu điểm danh chi tiết từng
+                        <li><a th:href="@{/count}">Số liệu điểm danh chi tiết từng
                             môn</a></li>
-                        <li><a href="#x">Điểm chi tiết từng môn</a></li>
-                        <li><a href="#">Báo cáo tình trạng nộp tiền</a></li>
-                        <li><a href="#">Bảng điểm quá trình học</a></li>
-                        <li><a href="#">Xem lịch thi</a></li>
+                        <li><a th:href="@{/grade}">Điểm chi tiết từng môn</a></li>
+                        <li><a th:href="@{/fee}">Báo cáo tình trạng nộp tiền</a></li>
+                        <li><a th:href="@{/grade}">Bảng điểm quá trình học</a></li>
+                        <li><a th:href="@{/test}">Xem lịch thi</a></li>
                         <li><strong>Bản tin</strong><br/>
                             - <a href="https://cocdoc.fpt.edu.vn">https://cocdoc.fpt.edu.vn</a> - Bản tin Cóc Đọc là
                             kênh thông tin xoay quanh các chủ đề về học tập, đời sống của sinh viên, học sinh Tổ chức
@@ -79,7 +79,7 @@
                             - <a href="https://daihoc.fpt.edu.vn">https://daihoc.fpt.edu.vn</a> - Bản tin Đại học FPT
                             cung cấp các thông tin, sự kiện nổi bật của Đại học FPT.
                         </li>
-                        <li><a href="#">Tra học phí kỳ học</a></li>
+                        <li><a th:href="@{/tuition}">Tra học phí kỳ học</a></li>
                     </ul>
                 </td>
                 <td valign="top" style="width: 50%;">

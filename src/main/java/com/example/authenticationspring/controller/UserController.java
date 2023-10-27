@@ -90,6 +90,45 @@ public class UserController {
         model.addAttribute("user", user);
         return "schedule";
     }
+    @GetMapping("/count")
+    public String getCountPage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "count";
+    }
+
+    @GetMapping("/fee")
+    public String getFeePage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "fee";
+    }
+
+    @GetMapping("/grade")
+    public String getGradePage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "grade";
+    }
+
+    @GetMapping("/test")
+    public String getTestPage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "test";
+    }
+
+    @GetMapping("/tuition")
+    public String getTuitionPage(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.findByMail(email);
+        model.addAttribute("user", user);
+        return "tuition";
+    }
 
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @ModelAttribute(name = "confirm-new-password")String newPass) {
