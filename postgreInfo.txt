@@ -1,4 +1,0 @@
-dpg-cksg7305vl2c73erbob0-a/loginfpt
-dpg-cksg7305vl2c73erbob0-a.singapore-postgres.render.com/loginfpt
-loginfpt_user
-Lh7BFgd0kh9vsOfjBkef40D7p5cTPhNb
